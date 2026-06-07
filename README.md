@@ -19,6 +19,11 @@ The repository is organized as follows:
 * **Geolocation Enrichment:** Converted IP addresses to integers and utilized range-based merging to map transactions to specific countries.
 * **Feature Engineering:** Created new behavioral features including `time_since_signup`, `hour_of_day`, `day_of_week`, and transaction velocity metrics to capture patterns indicative of fraudulent activity.
 
+## Exploratory Data Analysis (EDA)
+Below is the distribution of transactions, highlighting the class imbalance between fraudulent and legitimate activities.
+
+![Class Distribution](visuals/fraud_class_distribution.png)
+
 ## How to Run
 1. Ensure the required CSV files are placed in the `data/raw/` directory.
 2. Install dependencies via `pip install -r requirements.txt`.
