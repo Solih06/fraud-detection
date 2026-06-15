@@ -109,7 +109,7 @@ Our model's explainability analysis reveals that V1 and Time are the most critic
 **3. Tiered Review System:** For transactions flagged as high-risk based on V1 and Time but with a total amount below a certain threshold, we recommend routing these to a Low-Priority Manual Review Queue rather than an automatic block. This balances fraud mitigation with revenue protection.
 
 ### Global Feature Importance
-![SHAP Summary](../visuals/shap_summary_plot.png)
+![SHAP Summary](/visuals/shap_summary_plot.png)
 
 
 ## How to Run
