@@ -120,6 +120,11 @@ Our model's explainability analysis reveals that V1 and Time are the most critic
    - Modeling: `modeling_preparation.ipynb`
    - Model Explainability: `modeling_explainability.ipynb`
 
+## 🛠 Development Workflow
+- **Branching Strategy:** Feature branches (e.g., `task-1`, `task-2`) were used for all developments and merged via Pull Requests.
+- **CI/CD Pipeline:** Automated linting is configured via GitHub Actions (see `.github/workflows/ci.yml`) to ensure code quality on every push.
+- **Commit History:** Descriptive commit messages follow conventional commit standards.
+
 
 
 
