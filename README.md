@@ -32,14 +32,32 @@ fraud-detection/
 ├── run_pipeline_test.py    # Automated pipeline verification script
 └── README.md
 ```
-## Key Accomplishments (Interim-1)
-* **Data Cleaning:** Handled missing values, removed duplicates, and corrected data types for timestamps to ensure data integrity.
-* **Exploratory Data Analysis:** Analyzed univariate and bivariate relationships and quantified the class imbalance between fraudulent and legitimate transactions.
-* **Geolocation Enrichment:** Converted IP addresses to integers and utilized range-based merging to map transactions to specific countries.
-* **Feature Engineering:** Created new behavioral features including `time_since_signup`, `hour_of_day`, `day_of_week`, and transaction velocity metrics to capture patterns indicative of fraudulent activity.
+## Key Accomplishments
+
+**Data Cleaning:** Handled missing values, removed duplicates, and corrected data types for timestamps to ensure data integrity.
+
+**Exploratory Data Analysis:** Analyzed univariate and bivariate relationships and quantified the class imbalance between fraudulent and legitimate transactions.
+
+**Geolocation Enrichment:** Converted IP addresses to integers and utilized range-based merging to map transactions to specific countries.
+
+**Feature Engineering:** Created new behavioral features including time_since_signup, hour_of_day, day_of_week, and transaction velocity metrics to capture patterns indicative of fraudulent activity.
+
+**Explicit Imbalance Handling:** Implemented SMOTE (Synthetic Minority Over-sampling Technique) exclusively on the training split to address class imbalance without introducing data leakage, ensuring robust model training.
+
+**Model Optimization:** Performed systematic hyperparameter tuning using GridSearchCV and persisted models for production-readiness.
 
 ## Exploratory Data Analysis (EDA)
-Below is the distribution of transactions, highlighting the class imbalance between fraudulent and legitimate activities.
+
+Below is the distribution of transactions, highlighting the class imbalance between fraudulent and legitimate activities. Our analysis revealed that fraud is highly time-dependent and device-specific, which informed our decision to engineer time-based features and utilize SMOTE to prioritize the detection of the minority fraud class.
+Imbalance Handling Strategy
+
+To ensure the model learns the fraud patterns effectively, we implemented the following strategy:
+
+**Stratified Split:** Split the dataset while maintaining the original class ratio in both training and testing sets.
+
+**SMOTE Resampling:** Applied SMOTE only to the training set to balance the classes.
+
+**Validation:** Verified the distribution post-sampling (1:1 ratio) while keeping the test set untouched to ensure honest evaluation of model performance.
 
 ![Class Distribution](visuals/fraud_class_distribution.png)
 
