@@ -3,3 +3,5 @@ scikit-learn
 imbalanced-learn
 matplotlib
 seaborn
+shap
+joblib
