@@ -95,6 +95,22 @@ Following a systematic evaluation, the Random Forest ensemble was selected as th
 ![Tuned RF-Ecommerce](visuals/cm_Tuned-RF-Ecommerce.png)
 ![Tuned RF-CreditCard](visuals/cm_Tuned-RF-CreditCard.png)
 
+## Business Recommendations & Interpretation(Task 3)
+
+Interpretation of SHAP Findings:
+Our model's explainability analysis reveals that V1 and Time are the most critical features driving fraud detection. The SHAP interaction plots show that these features do not operate in isolation; their combined values significantly influence the model's confidence in identifying fraudulent activity. By examining individual cases, we identified that our False Positives often occurred when legitimate transactions were flagged due to outlier V1 values, while True Positives were effectively caught by the model's sensitivity to temporal patterns.
+
+**Actionable Recommendations:**
+
+**1. Temporal-Based Risk Flagging:** Based on the SHAP analysis for Time, fraud likelihood fluctuates at specific intervals. We recommend implementing Dynamic Risk Scoring that increases scrutiny during the high-risk "danger hours" identified by the model, rather than applying a static rule for all times of day.
+
+**2. Feature-Specific Verification (V1-based):** Since V1 is a primary driver, transactions with high-risk V1 values should trigger an incremental authentication step (e.g., SMS OTP or biometric verification) instead of an immediate decline. This significantly reduces customer friction for False Positives.
+
+**3. Tiered Review System:** For transactions flagged as high-risk based on V1 and Time but with a total amount below a certain threshold, we recommend routing these to a Low-Priority Manual Review Queue rather than an automatic block. This balances fraud mitigation with revenue protection.
+
+### Global Feature Importance
+![SHAP Summary](../visuals/shap_summary_plot.png)
+
 
 ## How to Run
 1. Ensure the required CSV files are placed in the `data/raw/` directory.
@@ -102,6 +118,7 @@ Following a systematic evaluation, the Random Forest ensemble was selected as th
 3. Execute the notebooks in the following order:
    - Data preparation:`eda-fraud-data.ipynb` & `feature-engineering.ipynb`
    - Modeling: `modeling_preparation.ipynb`
+   - Model Explainability: `modeling_explainability.ipynb`
 
 
 
