@@ -2,3 +2,5 @@ venv/
 __pycache__/
 .ipynb_checkpoints/
 .DS_Store
+data/raw/creditcard.csv
+data/processed/cleaned_creditcard.csv

@@ -58,16 +58,24 @@ The models were evaluated using **AUC-PR** and **F1-Score**, as accuracy is misl
 
 | Model | Mean AUC-PR | Mean F1-Score | Std. Deviation (F1) |
 | :--- | :--- | :--- | :--- |
-| LogReg-Ecommerce | 0.5766 | 0.2787 | 0.0027 |
-| RF-Ecommerce | 0.6854 | 0.6189 | 0.0063 |
-| LogReg-CreditCard | 0.7165 | 0.1045 | 0.0026 |
-| RF-CreditCard | 0.7093 | 0.3690 | 0.0365 |
+| RF-Ecommerce | 0.6854 | 0.6189 | 0.0094 |
+| RF-CreditCard | 0.7994 | 0.5822 | 0.0602 |
 
-### Model Selection Justification:
-After comparing the performance of the Logistic Regression baseline and the Random Forest ensemble, the **Random Forest model** was selected as the superior choice for both datasets.
-* **Performance:** Random Forest consistently achieved higher AUC-PR and F1-Scores, demonstrating a better ability to distinguish between legitimate and fraudulent transactions.
-* **Business Impact:** By prioritizing the F1-Score, the model achieves a necessary balance between identifying fraud (minimizing False Negatives) and avoiding customer frustration (minimizing False Positives).
 
+## Model Selection and Optimization Justification
+
+Following a systematic evaluation, the Random Forest ensemble was selected as the final model for both datasets. The selection and optimization process was driven by the following criteria:
+
+1.  **Systematic Hyperparameter Tuning:** We utilized GridSearchCV to optimize key parameters (e.g., n_estimators, max_depth). This ensured the models were not using default configurations but were tuned to maximize the F1-Score for the specific fraud patterns found in each dataset.
+
+2. **Performance & Reproducibility:** The tuned models demonstrated superior AUC-PR and F1-Scores compared to the baseline Logistic Regression. To ensure transparency and production-readiness, the final best-performing models have been persisted as .pkl files in the /models directory using joblib.
+
+3. **Cross-Validation & Holdout Reporting:** Model performance was validated using 5-fold Stratified Cross-Validation to ensure robust results across different data subsets. Explicit confusion matrix visualizations for the final holdout folds are generated and saved in the /visuals directory to illustrate the model's performance in balancing True Positives and False Positives.
+
+4. **Business Impact:** The optimized model effectively balances the detection of financial loss (minimizing False Negatives) against the need for a seamless user experience (minimizing False Positives). These models are now ready for deployment via the saved assets in the repository.
+
+![Tuned RF-Ecommerce](visuals/cm_Tuned-RF-Ecommerce.png)
+![Tuned RF-CreditCard](visuals/cm_Tuned-RF-CreditCard.png)
 
 
 ## How to Run
@@ -76,3 +84,8 @@ After comparing the performance of the Logistic Regression baseline and the Rand
 3. Execute the notebooks in the following order:
    - Data preparation:`eda-fraud-data.ipynb` & `feature-engineering.ipynb`
    - Modeling: `modeling_preparation.ipynb`
+
+
+
+
+  
